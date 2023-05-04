@@ -1,0 +1,62 @@
+$button-color: rgb(54, 88, 255);
+$secondary-btn-color: orange;
+$text-color: white;
+$border-color: aliceblue;
+
+
+%container{
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+form{
+    @extend %container;
+
+    img{
+        @extend %container;
+        width: auto;
+        height: auto;
+    }
+
+    #search-box{
+        @extend %container;
+        width: 300px;
+        height: 20px;
+        border-radius: 20px;
+        border-color: $border-color;
+    }
+
+    #submit-btn{
+        @extend %container;
+        border-radius: 10px;
+        width: 170px;
+        height: 50px;
+        background-color: $button-color;
+        color: $text-color;
+        border-color: $border-color;
+    }
+    #submit-btn:hover{
+        background-color: $secondary-btn-color;
+    }
+}
+
+.links{
+    @extend %container;
+    text-decoration: none;
+    border-radius: 10px;
+    background-color: $button-color;
+    color: $text-color;
+    display: inline-flex;
+    flex-wrap: wrap;
+    width: 140px;
+    height: 25px;
+    margin-top: 5px;
+}
+
+.links:hover{
+    background-color: $secondary-btn-color;
+}

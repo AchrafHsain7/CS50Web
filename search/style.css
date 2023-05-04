@@ -1,0 +1,40 @@
+form, form img, form #search-box, form #submit-btn, .links {
+  text-align: center;
+  padding: 10px;
+  margin: 10px;
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif; }
+
+form img {
+  width: auto;
+  height: auto; }
+form #search-box {
+  width: 300px;
+  height: 20px;
+  border-radius: 20px;
+  border-color: aliceblue; }
+form #submit-btn {
+  border-radius: 10px;
+  width: 170px;
+  height: 50px;
+  background-color: #3658ff;
+  color: white;
+  border-color: aliceblue; }
+form #submit-btn:hover {
+  background-color: orange; }
+
+.links {
+  text-decoration: none;
+  border-radius: 10px;
+  background-color: #3658ff;
+  color: white;
+  display: inline-flex;
+  flex-wrap: wrap;
+  width: 140px;
+  height: 25px;
+  margin-top: 5px; }
+
+.links:hover {
+  background-color: orange; }
+
+/*# sourceMappingURL=style.css.map */
