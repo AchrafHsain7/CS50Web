@@ -46,6 +46,7 @@ form{
 
 .links{
     @extend %container;
+    border : none; 
     text-decoration: none;
     border-radius: 10px;
     background-color: $button-color;

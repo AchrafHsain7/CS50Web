@@ -4,13 +4,19 @@
     <head>
         <title>Images</title>
         <meta name="view-port" content="width=device-width, initial-scale=1,0">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <a href="index.html">Google search</a>
+        <a class="links" href="index.html">Google search</a>
         <form action="https://www.google.com/search" autocomplete="off">
-            <input  name="q" placeholder="Query" autofocus autocomplet="off">
+            <div>
+                <img src="https://www.google.co.ma/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png">
+            </div>
+            <input id="search-box" name="q" placeholder="Query" autofocus autocomplet="off">
             <input type="hidden" name="tbm" value="isch">
-            <button type="submit">Search Images</button>
+            <div>
+                <button id="submit-btn" type="submit">Search Images</button>
+            </div>
         </form>
     </body>
 </html>

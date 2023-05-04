@@ -24,6 +24,7 @@ form #submit-btn:hover {
   background-color: orange; }
 
 .links {
+  border: none;
   text-decoration: none;
   border-radius: 10px;
   background-color: #3658ff;
