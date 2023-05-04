@@ -1,26 +1,29 @@
-form, form img, form #search-box, form #submit-btn, .links {
+form, img, .search-box, .submit-btn, .links {
   text-align: center;
   padding: 10px;
   margin: 10px;
   font-size: 18px;
   font-family: Arial, Helvetica, sans-serif; }
 
-form img {
+img {
   width: auto;
   height: auto; }
-form #search-box {
+
+.search-box {
   width: 300px;
   height: 20px;
   border-radius: 20px;
   border-color: aliceblue; }
-form #submit-btn {
+
+.submit-btn {
   border-radius: 10px;
   width: 170px;
   height: 50px;
   background-color: #3658ff;
   color: white;
   border-color: aliceblue; }
-form #submit-btn:hover {
+
+.submit-btn:hover {
   background-color: orange; }
 
 .links {
@@ -37,5 +40,8 @@ form #submit-btn:hover {
 
 .links:hover {
   background-color: orange; }
+
+#search-bars {
+  text-align: left; }
 
 /*# sourceMappingURL=style.css.map */
