@@ -41,7 +41,9 @@ img {
 .links:hover {
   background-color: orange; }
 
-#search-bars {
+#search-bars .text {
   text-align: left; }
+#search-bars .search-box {
+  text-align: right; }
 
 /*# sourceMappingURL=style.css.map */
