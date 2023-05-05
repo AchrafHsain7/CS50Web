@@ -14,8 +14,9 @@ $border-color: aliceblue;
 
 
 form{
-    @extend %container;
+    text-align: center;
 }
+
 
 img{
     @extend %container;
@@ -63,11 +64,8 @@ img{
     background-color: $secondary-btn-color;
 }
 
-#search-bars{
-    .text{
-        text-align: left;
-    }
-    .search-box{
-        text-align: right;
-    }
+.adv-text{
+    @extend %container;
+    text-align: left;
 }
+

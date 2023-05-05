@@ -1,9 +1,12 @@
-form, img, .search-box, .submit-btn, .links {
+img, .search-box, .submit-btn, .links, .adv-text {
   text-align: center;
   padding: 10px;
   margin: 10px;
   font-size: 18px;
   font-family: Arial, Helvetica, sans-serif; }
+
+form {
+  text-align: center; }
 
 img {
   width: auto;
@@ -41,9 +44,7 @@ img {
 .links:hover {
   background-color: orange; }
 
-#search-bars .text {
+.adv-text {
   text-align: left; }
-#search-bars .search-box {
-  text-align: right; }
 
 /*# sourceMappingURL=style.css.map */
