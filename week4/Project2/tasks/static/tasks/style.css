@@ -1,13 +1,18 @@
-h1{
-    text-align: center;
-    color: goldenrod;
-    font-size: 50px;
-    font-family: Arial, Helvetica, sans-serif;
+h1 {
+  text-align: center;
+  color: goldenrod;
+  font-size: 50px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 ul {
-    text-align: center;
-    font-size: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    list-style-type: none;
+  text-align: center;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  list-style-type: none;
+}
+
+div {
+  text-align: center;
+  border-radius: 5px;
 }

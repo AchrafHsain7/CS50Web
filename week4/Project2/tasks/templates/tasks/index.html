@@ -1,17 +1,11 @@
-{% load static %}
-<!DOCTYPE html>
+{% extends "tasks/layout.html" %}
 
-<htmal lang="en">
-  <head>
-    <title>Tasks</title>
-    <link href="{% static 'tasks/style.css' %}" rel="stylesheet" />
-  </head>
-  <body>
+{% block body %}
     <h1>Tasks Go Here</h1>
     <ul>
     {% for task in tasks %}
         <li>{{task}}</li>
     {% endfor %}
     </ul>
-  </body>
-</htmal>
+{% endblock %}
+
