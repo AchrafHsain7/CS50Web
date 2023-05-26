@@ -3,10 +3,15 @@
 {% block body %}
     <h1>Add Task</h1>
     <div class="form-add">
-        <form>
-            <input type="text" autofocus autocomplete="off" placeholder="Task" name="task">
+        <form action="{% url 'tasks:add' %}" method="post">
+            {% csrf_token %}
+            {{ form }}
             <input type="submit">
         </form>
     </div>
-    <a href="{% url 'index' %}">Current Tasks</a>
+    <div>
+        <a href="{% url 'tasks:index' %}">Current Tasks</a> 
+    </div>
+    
 {% endblock %}
+
