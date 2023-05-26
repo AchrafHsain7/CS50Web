@@ -8,5 +8,10 @@
   </head>
   <body>
     <h1>Tasks Go Here</h1>
+    <ul>
+    {% for task in tasks %}
+        <li>{{task}}</li>
+    {% endfor %}
+    </ul>
   </body>
 </htmal>
