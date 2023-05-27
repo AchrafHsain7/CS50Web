@@ -14,11 +14,11 @@ def display_entry(request, entry):
     entry_data = util.get_entry(entry_title)
     if entry_data == None:
         return render(request, 'encyclopedia/failure.html', {
-            "error_code" : 101,
+            "error_code" : "ERROR 101",
             "error_message": "The requested entry does not exist yet"
         })
     return render(request, 'encyclopedia/entry.html', {
-        "title": entry_title,
+        "title": entry_title.capitalize(),
         "data" : entry_data
     })
 
