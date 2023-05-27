@@ -3,6 +3,7 @@ from . import util
 from django import forms
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
+import random
 
 from . import util
 
@@ -64,5 +65,10 @@ def edited(request):
     data = request.POST["new_data"]
     util.save_entry(title, data)
     return HttpResponseRedirect(title)
-                    
+
+def random_page(request):
+    entries = util.list_entries()
+    page = random.choice(entries)
+    return HttpResponseRedirect(page)    
+        
 

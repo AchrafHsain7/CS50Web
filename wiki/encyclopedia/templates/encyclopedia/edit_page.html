@@ -9,7 +9,7 @@
         {% csrf_token %}
         <input hidden name="title" value="{{title}}">
         <textarea name="new_data" >{{entry_data}}</textarea>
-        <button type="submit">Edit the Entry</button>
+        <button class="form-button" type="submit">Edit the Entry</button>
     </form>
 
 {% endblock %}
