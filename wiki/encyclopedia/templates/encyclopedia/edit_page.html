@@ -5,8 +5,9 @@
 {% block body %} 
     <h1>Edit {{title}} Entry:</h1>
 
-    <form action="" method="post">
+    <form action="{% url 'edited' %}" method="post">
         {% csrf_token %}
+        <input hidden name="title" value="{{title}}">
         <textarea name="new_data" >{{entry_data}}</textarea>
         <button type="submit">Edit the Entry</button>
     </form>

@@ -58,5 +58,11 @@ def edit_page(request):
         "title": request.POST["title"],
         "entry_data": util.get_entry(request.POST["title"])
     })
+
+def edited(request):
+    title = request.POST["title"]
+    data = request.POST["new_data"]
+    util.save_entry(title, data)
+    return HttpResponseRedirect(title)
                     
 
