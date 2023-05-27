@@ -1,13 +1,12 @@
 from django.shortcuts import render
 from . import util
 from django import forms
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 
 from . import util
 
-class SearchForm(forms.Form):
-    to_search = forms.CharField()
+    
 
 
 def index(request):
@@ -30,18 +29,18 @@ def display_entry(request, entry):
 
 def search(request):
     entries = util.list_entries()
-    form = request.POST
+    to_search = request.POST["to_add"]
     results = []
-    if form.is_valid():
-        to_search = form.cleaned_data["to_search"]
-        if to_search in entries:
-            return HttpResponseRedirect(to_search)
-        else:
-            for entry in entries:
-                if to_search in entry:
-                    results.append(entry)
-            return render(request, 'encyclopedia/search.html', {
-                "results": results
-            })
+    if to_search in entries:
+        return HttpResponseRedirect(to_search)
+    else:
+        for entry in entries:
+            if to_search in entry:
+                results.append(entry)
+        return render(request, 'encyclopedia/search.html', {
+            "results": results
+        })
+   
+
                     
 
