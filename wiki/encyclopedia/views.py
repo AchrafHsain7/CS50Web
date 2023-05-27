@@ -6,7 +6,6 @@ from django.urls import reverse
 
 from . import util
 
-    
 
 
 def index(request):
@@ -35,12 +34,17 @@ def search(request):
         return HttpResponseRedirect(to_search)
     else:
         for entry in entries:
-            if to_search in entry:
+            if to_search.upper() in entry.upper():
                 results.append(entry)
         return render(request, 'encyclopedia/search.html', {
             "results": results
         })
    
+def new_page(request):
+    if request.method == "POST":
+        return HttpResponse("Form Received")
+
+    return render(request, 'encyclopedia/new_page.html')
 
                     
 
