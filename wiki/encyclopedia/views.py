@@ -30,7 +30,7 @@ def search(request):
     entries = util.list_entries()
     to_search = request.POST["to_add"]
     results = []
-    if to_search in entries:
+    if to_search.upper() in [entry.upper() for entry in entries]:
         return HttpResponseRedirect(to_search)
     else:
         for entry in entries:
@@ -42,9 +42,18 @@ def search(request):
    
 def new_page(request):
     if request.method == "POST":
-        return HttpResponse("Form Received")
-
+        existing_entries = util.list_entries()
+        if request.POST["title"].upper() in [entry.upper() for entry in existing_entries]:
+            return render(request, 'encyclopedia/failure.html', {
+                "error_code" : "ERROR 102",
+                "error_message" : "This Page already Exist! Maybe you want to edit it instead?"
+            })
+        util.save_entry(request.POST["title"], request.POST["MD_data"])
+        return HttpResponseRedirect(request.POST["title"]) 
+    
     return render(request, 'encyclopedia/new_page.html')
 
+def edit_page(request, title):
+    return HttpResponse(title)
                     
 
