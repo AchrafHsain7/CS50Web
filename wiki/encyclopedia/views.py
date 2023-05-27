@@ -53,22 +53,10 @@ def new_page(request):
     
     return render(request, 'encyclopedia/new_page.html')
 
-def edit_page(request, title):
-
-    entry_data = util.get_entry(title)
-    if entry_data:
-        if request.method == "POST":
-            util.save_entry(title, request.POST["new_data"])
-            return HttpResponseRedirect(reverse("display_entry", args=[title])) 
-
-        return render(request, 'encyclopedia/edit_page.html', {
-            "title":title,
-            "entry_data": entry_data
-        }) 
-    else:
-        return render(request, 'encyclopedia/failure.html', {
-            "error_code" : "EROR 103",
-            "error_message": "The page you wont to edit dont exist. Try Creating it first!"
-        })
+def edit_page(request):
+    return render(request, 'encyclopedia/edit_page.html', {
+        "title": request.POST["title"],
+        "entry_data": util.get_entry(request.POST["title"])
+    })
                     
 

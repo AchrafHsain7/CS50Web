@@ -6,11 +6,17 @@
 
 {% block body %} 
     {{ data }}
+    <div>
+        <form action="{% url 'edit_page'%}" method="post">
+            {% csrf_token %}
+            <input hidden name="title" value="{{title}}">
+            <button type="submit">Edit Page</button>
+        </form>
+        
+    </div>
+    
 {% endblock %} 
 
-{% block nav %}
-    <a href="{% url 'editpage' title=title %}">Edit Page</a>
-{% endblock %} 
 
 
 
