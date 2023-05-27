@@ -7,11 +7,12 @@ class NewTaskForm(forms.Form):
     task = forms.CharField(label="New Task")
 
 
-TASKS = []
 # Create your views here.
 def index(request):
+    if "task" not in request.session:
+        request.session["task"] = []
     return render(request, 'tasks/index.html', {
-        "tasks" : TASKS
+        "tasks" : request.session["task"]
     }) 
 
 def add(request):
@@ -19,7 +20,7 @@ def add(request):
         form = NewTaskForm(request.POST)
         if form.is_valid():
             task = form.cleaned_data["task"]
-            TASKS.append(task)
+            request.session["task"] += [task]
             return HttpResponseRedirect(reverse("tasks:index"))
         else:
             return render(request, 'tasks/add.html', {
