@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 import random
 import markdown2
+from django.utils.safestring import mark_safe
 
 from . import util
 
@@ -25,7 +26,7 @@ def display_entry(request, entry):
         })
     return render(request, 'encyclopedia/entry.html', {
         "title": entry_title.capitalize(),
-        "data" : entry_data
+        "data" : mark_safe(markdown2.markdown(entry_data))
     })
 
 def search(request):
