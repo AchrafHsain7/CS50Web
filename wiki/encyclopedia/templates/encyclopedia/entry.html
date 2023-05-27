@@ -9,7 +9,7 @@
 {% endblock %} 
 
 {% block nav %}
-    <a href="editpage/{{title}}">Edit Page</a>
+    <a href="{% url 'editpage' title=title %}">Edit Page</a>
 {% endblock %} 
 
 
