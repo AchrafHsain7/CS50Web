@@ -4,5 +4,11 @@
 
 {% block body %} 
 <h1>Flights:</h1>
-This is the home page for our flights 
+<ul>
+    {% for flight in flights %} 
+    <li>{{ flight }}</li>
+    {% empty %} 
+    There is currently no Flights available.
+    {% endfor %} 
+</ul> 
 {% endblock %} 
