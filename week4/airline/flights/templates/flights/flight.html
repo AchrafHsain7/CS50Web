@@ -10,13 +10,15 @@
 <div>
     <h2>Passengers: </h2>
     <ul>
-        {% for passenger in passsengers %} 
+        {% for passenger in passengers %} 
         <li>{{ passenger }}</li>
         {% empty %} 
         There is no passenger in this flight yet.
         {% endfor %} 
     </ul>
 </div>
+
+<a href="{% url 'index' %}">All Flights</a>
 
 {% endblock %} 
 
