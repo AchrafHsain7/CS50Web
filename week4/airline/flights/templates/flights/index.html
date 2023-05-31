@@ -6,7 +6,7 @@
 <h1>Flights:</h1>
 <ul>
     {% for flight in flights %} 
-    <li>Flight {{flight.id}}: {{flight.origin}} to {{flight.destination}} </li>
+    <li><a href="{{flight.id}}">Flight {{flight.id}}: {{flight.origin}} to {{flight.destination}}</a></li>
     {% empty %} 
     There is currently no Flights available.
     {% endfor %} 
