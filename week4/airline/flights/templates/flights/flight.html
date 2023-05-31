@@ -7,6 +7,16 @@
 <div>Origin: {{flight.origin}}</div>
 <div>Destination: {{flight.destination}}</div>
 <div>Duration: {{flight.duration}}</div>
+<div>
+    <h2>Passengers: </h2>
+    <ul>
+        {% for passenger in passsengers %} 
+        <li>{{ passenger }}</li>
+        {% empty %} 
+        There is no passenger in this flight yet.
+        {% endfor %} 
+    </ul>
+</div>
 
 {% endblock %} 
 
