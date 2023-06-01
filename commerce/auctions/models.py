@@ -9,7 +9,7 @@ class Listing(models.Model):
     creator = models.ForeignKey(User, blank=False, on_delete=models.CASCADE, related_name="user_listings") 
     winning_user = models.ForeignKey(User, blank=False, on_delete=models.CASCADE, related_name="user_winning_listings") 
     starting_bid = models.PositiveIntegerField(blank=False)
-    title = models.CharField(max_length=50, blank=False)
+    title = models.CharField(max_length=64, blank=False)
     description = models.CharField(max_length=500)
     image = models.URLField()
     category = models.CharField(max_length=50) 
