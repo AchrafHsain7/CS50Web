@@ -90,7 +90,7 @@ def create_listing(request):
             image_link = form.cleaned_data["image_link"]
             category = form.cleaned_data["category"]
             if True in [category in a for a in CATEGORIES]:
-                listing = Listing(creator=request.user, winning_user=request.user, starting_bid=starting_bid, title=title, description=description,
+                listing = Listing(creator=request.user, winning_user=request.user, starting_bid=starting_bid,current_price=starting_bid, title=title, description=description,
                                 image=image_link, category=category)
                 listing.save()
 
