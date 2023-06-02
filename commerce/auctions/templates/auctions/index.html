@@ -5,9 +5,9 @@
     <ul>
         {% for listing in listings %}
         <li>
-            <div>Title:{{listing.title}}</div>
+            <div><a href="{% url 'listing_detail' listing.id %}">{{listing.title}}</a></div>
             <div>Description:{{listing.description}}</div>
-            <div>Current price:{{listing.current_price}}</div>
+            <div>Current price:{{listing.current_price}}$</div>
             <div><img src="{{listing.image}}" alt="Image unavailable" height="250"></img></div>
         </li>
         {% endfor %}

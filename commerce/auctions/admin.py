@@ -4,7 +4,7 @@ from .models import *
 
 # Register your models here.
 class UserAdmin(admin.ModelAdmin):
-    list_display = ["username", "user_comments", "user_listings", "user_bids"]    
+    list_display = ["username", "user_comments", "user_listings", "user_bids", "user_watchlist"]   
 
     @admin.display(ordering="user__comment", description="User Comments")
     def user_comments(self, obj):
@@ -15,9 +15,12 @@ class UserAdmin(admin.ModelAdmin):
     @admin.display(ordering="user__bid", description="User Bids")
     def user_bids(self, obj):
         return obj.user_bids.all() 
+    @admin.display(ordering="user__list", description="user Watchlist")
+    def user_watchlist(self, obj):
+        return obj.user_watchlist.all()
 
 class ListingAdmin(admin.ModelAdmin):
-    list_display = ["creator", "title", "listing_bids"]   
+    list_display = ["creator", "title", "listing_bids", "active", "winning_user"]    
 
     @admin.display(ordering="listing__bid", description="Bids")
     def listing_bids(self, obj):

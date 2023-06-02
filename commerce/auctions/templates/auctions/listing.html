@@ -1,0 +1,38 @@
+{% extends "auctions/layout.html" %} 
+
+{% block title %}{{ listing.title }} {% endblock %} 
+
+{% block body %} 
+
+{% if not listing.active %} 
+    {% if user.id == listing.winning_user.id and user.id != listing.creator.id %} 
+    <h2>Congratulation {{user.username}} you won this listing!</h2>
+    {% endif %} 
+    <h3>This listing is closed</h3>
+{% endif %}
+<h1>{{listing.title}}</h1>
+<p><img src="{{listing.image}}" alt="image unavailable" height="500"></p>
+<p>Description: {{listing.description}}</p>
+<p>Starting price: {{listing.starting_bid}}$</p>
+<p>Current Price: {{listing.current_price}}$</p>
+<p>Seller: {{listing.creator}}</p>
+<p>Category: {{listing.category}}</p> 
+{% if user.is_authenticated and listing.active %} 
+    {% if in_watchlist %} 
+    <a href="{% url 'remove_watchlist' listing.id %}">Remove from watch List</a>
+    {% else %} 
+    <a href="{% url 'add_watchlist' listing.id %}">Add to watchList</a>
+    {% endif %} 
+    {% if user.id != listing.creator.id and listing.active %} 
+    <form action="{% url 'bid' listing.id %}" method="post">
+        {% csrf_token %}
+        {{bidding_form}}
+        <button type="submit">Bid</button>
+    </form>
+    {% endif %} 
+    {% if user.id == listing.creator.id %}  
+    <a href="{% url 'close_listing' listing.id %}">Close Listing</a>
+    {% endif %} 
+{% endif %} 
+
+{% endblock %}
