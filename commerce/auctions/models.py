@@ -18,7 +18,7 @@ class Listing(models.Model):
     active = models.BooleanField()
 
     def __str__(self):
-        return f"{self.title}: best bid for {self.winning_user}"
+        return f"{self.title}, Active: {self.active}"
 
 class Bid(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_bids")

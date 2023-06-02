@@ -159,14 +159,15 @@ def bidding_transaction(request, object_id):
         form = BiddingForm(request.POST)
         if listing is not None and form.is_valid():
             price = form.cleaned_data["bidding_price"]
-            if price > int(listing.current_price):
+            if price > int(listing.current_price) and listing.active:
                 listing.current_price = price
                 listing.winning_user = request.user
                 listing.save(update_fields=['current_price', 'winning_user'])
                 new_bid = Bid(user=request.user, listing=listing, amount=price)
                 new_bid.save() 
             else:
-                return HttpResponse("<h1>The transaction failed, Make sure the price is larger than the current price and object exist </h1>")
+                return HttpResponse("<h1>The transaction failed, Make sure the price is larger than the current price, object exist. Refresh the page if" 
+                                    " the problem persist </h1>")
         return HttpResponseRedirect(reverse("listing_detail", args=(object_id,)))
     
     return HttpResponseRedirect("index") 
@@ -192,3 +193,32 @@ def add_comment(request, object_id):
         return HttpResponseRedirect(reverse("listing_detail", args=(object_id, )))
     
     return HttpResponseRedirect(reverse("index")) 
+
+@login_required
+def watchlist(request):
+    listings = request.user.user_watchlist.all()
+
+    return render(request, 'auctions/watchlist.html', {
+        "watchlist": listings,
+    })
+
+def categories(request):
+    available_categories = []
+    listings = Listing.objects.all()
+    for listing in listings: 
+        category = listing.category
+        if category not in available_categories and listing.active:
+            available_categories.append(category)
+    return render(request, "auctions/categories.html", {
+        "categories": available_categories,
+    })
+
+def category_listings(request, category):
+    listings = Listing.objects.filter(category=category).all()
+    if listings.first() is not None:
+        return render(request, 'auctions/category_listings.html', {
+            "listings": listings,
+            "category": category
+        })
+    return HttpResponseRedirect(reverse("index"))
+    
