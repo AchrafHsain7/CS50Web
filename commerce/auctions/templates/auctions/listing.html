@@ -11,17 +11,17 @@
     <h3>This listing is closed</h3>
 {% endif %}
 <h1>{{listing.title}}</h1>
-<p><img src="{{listing.image}}" alt="image unavailable" height="500"></p>
+<p><img class="img-fluid" src="{{listing.image}}" alt="image unavailable" height="500"></p>
 <p>Description: {{listing.description}}</p>
 <p>Starting price: {{listing.starting_bid}}$</p>
 <p>Current Price: {{listing.current_price}}$</p>
 <p>Seller: {{listing.creator}}</p>
 <p>Category: {{listing.category}}</p> 
-{% if user.is_authenticated and listing.active %} 
-    {% if in_watchlist %} 
-    <a href="{% url 'remove_watchlist' listing.id %}">Remove from watch List</a>
+{% if user.is_authenticated  %} 
+    {% if in_watchlist and listing.active%}
+    <a href="{% url 'add_watchlist' listing.id %}">Add to watchList</a> 
     {% else %} 
-    <a href="{% url 'add_watchlist' listing.id %}">Add to watchList</a>
+    <a href="{% url 'remove_watchlist' listing.id %}">Remove from watch List</a>
     {% endif %} 
     {% if user.id != listing.creator.id and listing.active %} 
     <form action="{% url 'bid' listing.id %}" method="post">
@@ -30,16 +30,16 @@
         <button type="submit">Bid</button>
     </form>
     {% endif %} 
-    {% if user.id == listing.creator.id %}  
+    {% if user.id == listing.creator.id and listing.active%}  
     <a href="{% url 'close_listing' listing.id %}">Close Listing</a>
     {% endif %} 
 {% endif %} 
 
 
 <h3>Users Comments:</h3>
-<ul>
+<ul class="list-group">
     {% for comment in comments %} 
-    <li><b>{{comment.user.username}}</b> {{comment.date}} : {{comment.text}}</li>
+    <li class="list-group-item"><b>{{comment.user.username}}</b> {{comment.date}} : {{comment.text}}</li>
     {% endfor %} 
 </ul>
 {% if user.is_authenticated %} 

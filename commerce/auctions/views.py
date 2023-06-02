@@ -208,7 +208,7 @@ def categories(request):
     for listing in listings: 
         category = listing.category
         if category not in available_categories and listing.active:
-            available_categories.append(category)
+            available_categories.append(category.capitalize())
     return render(request, "auctions/categories.html", {
         "categories": available_categories,
     })

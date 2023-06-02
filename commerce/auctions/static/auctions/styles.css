@@ -1,3 +1,23 @@
 body {
     padding: 10px;
+    margin: 20px;
+    background-color: #fffdfa;  
 }
+
+ul {
+    text-decoration: none;
+}
+
+li {
+    text-decoration: none;
+    margin: 5px;
+}
+a {
+    color: goldenrod;
+}
+
+.heading {
+    background-color: gray;
+}
+
+
