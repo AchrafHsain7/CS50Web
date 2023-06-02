@@ -22,6 +22,9 @@ class ListingForm(forms.Form):
 class BiddingForm(forms.Form):
     bidding_price = forms.IntegerField(min_value=1)
 
+class CommentForm(forms.Form):
+        my_comment = forms.CharField(max_length=500, widget=forms.Textarea)  
+
 
 
 def index(request):
@@ -126,7 +129,9 @@ def  listing(request, object_id):
         return render(request, 'auctions/listing.html', {
             "listing": listed_object,
             "in_watchlist": in_watchlist,
-            "bidding_form": BiddingForm(), 
+            "bidding_form": BiddingForm(),
+            "comments": listed_object.listing_comments.all(), 
+            "comment_form": CommentForm(),
         }) 
     else:
         return HttpResponseRedirect(reverse("index"))
@@ -173,3 +178,17 @@ def close_listing(request, object_id):
         listing.active = False
         listing.save(update_fields=["active"]) 
     return HttpResponseRedirect(reverse("listing_detail", args=(object_id,)))
+
+@login_required
+def add_comment(request, object_id):
+    if request.method == "POST":
+        listing = Listing.objects.filter(id=object_id).first()
+        form = CommentForm(request.POST)
+        if listing is not None and form.is_valid():
+            text = form.cleaned_data["my_comment"]
+            new_comment = Comment(text=text, user=request.user, listing=listing)
+            new_comment.save()
+
+        return HttpResponseRedirect(reverse("listing_detail", args=(object_id, )))
+    
+    return HttpResponseRedirect(reverse("index")) 

@@ -35,4 +35,19 @@
     {% endif %} 
 {% endif %} 
 
+
+<h3>Users Comments:</h3>
+<ul>
+    {% for comment in comments %} 
+    <li><b>{{comment.user.username}}</b> {{comment.date}} : {{comment.text}}</li>
+    {% endfor %} 
+</ul>
+{% if user.is_authenticated %} 
+<form action="{% url 'add_comment' listing.id %}" method="post">
+    {% csrf_token %} 
+    {{ comment_form }}
+    <button type="submit">Comment </button>
+</form>
+{% endif %} 
+
 {% endblock %}
