@@ -4,18 +4,18 @@
     <head>
         <title>Hello JS</title>
         <script>
-            function hello(){
-                const h1 = document.querySelector('h1');
-                if(h1.innerHTML === 'Hello!'){
-                    h1.innerHTML = 'This is the power of JavaScript!';
-                } else {
-                    h1.innerHTML = 'Hello!';
-                };
-            };
+            document.addEventListener("DOMContentLoaded", function(){
+                document.querySelector('form').onsubmit = function() {
+                    alert('Hello, ' + document.querySelector('#name').value);
+                }
+            });
         </script>
     </head>
     <body>
         <h1>Hello!</h1>
-        <button onclick="hello()">Click me</button>
+        <form>
+            <input autofocus autocapitalize="on" autocomplete="off" id="name" placeholder="Name">
+            <input type="submit">
+        </form>
     </body>
 </html>
