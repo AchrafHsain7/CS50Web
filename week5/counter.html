@@ -7,12 +7,21 @@
         let counter = 0;
         function increment() {
             counter++;
-            alert(counter);
+            document.querySelector('div').innerHTML = `Count: ${counter}`;
+            if (counter % 10 === 0){
+                alert(`Count is now ${counter}!`);
+            } 
         }
+
+        document.addEventListener('DOMContentLoaded', function(){
+            document.querySelector('button').addEventListener('click', increment);
+        });
+       
     </script>
   </head>
   <body>
     <h1>Counter</h1>
-    <button onclick="increment()">Click me</button>
+    <div>Count: 0</div>
+    <button>Click me</button>
   </body>
 </html>
