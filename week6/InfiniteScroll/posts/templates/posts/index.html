@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>Posts</title>
+    </head>
+    <style>
+        p{
+            font-size: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 10px;
+            margin: 10px;
+            background-color: goldenrod;
+        }
+    </style>
+    <script>
+        let counter = 1;
+        let quantity = 20;
+
+      
+        document.addEventListener('DOMContentLoaded', load);
+
+        window.onscroll = () => {
+            if(window.innerHeight + window.scrollY >= document.body.offsetHeight){
+                load();
+            }
+        };
+
+
+        function load(){
+            let start = counter
+            let end = start + quantity -1
+            counter = end + 1
+
+            fetch(`/posts?start=${start}&end=${end}`)
+            .then(response => response.json())
+            .then(data => {
+                data.posts.forEach(addPost); 
+            });
+        }
+
+        function addPost(element){
+            const p = document.createElement('p');
+            p.innerHTML = element;
+            document.querySelector('#posts-container').append(p);
+        }
+    </script>
+    <body>
+        <h1>Hi mom</h1>
+        <div id="posts-container"></div>
+    </body>
+</html>
