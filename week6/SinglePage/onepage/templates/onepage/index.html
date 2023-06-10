@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>Home</title>
+        <script>
+
+            window.onpopstate = function(event){
+                console.log(event.state.section);
+                showSection(event.state.section);
+            }
+
+            function showSection(section){
+                fetch(`/sections/${section}`)
+                .then(result => result.text())
+                .then(text => {
+                    console.log(text)
+                    document.querySelector('#content').innerHTML = text;
+                });
+            }
+
+            document.addEventListener('DOMContentLoaded', () => {
+                document.querySelectorAll('button').forEach(button => {
+                    console.log()
+                    button.onclick = function(){
+                        const section = this.dataset.section;
+                        history.pushState({section: section}, "", `section${section}`);
+                        showSection(section);
+                    } 
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <h1>Hello mom!</h1>
+        <button data-section="1">Section 1</button>
+        <button data-section="2">Section 2</button>
+        <button data-section="3">Section 3</button>
+        <div id="content"></div>
+    </body>
+</html>
