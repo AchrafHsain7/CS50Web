@@ -5,12 +5,46 @@
         <title>Posts</title>
     </head>
     <style>
-        p{
+
+        @keyframes remove{
+            0%{
+                opacity: 1;
+                height: 100%;
+                line-height: 100%;
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+            85%{
+                height: 100%;
+                line-height: 100%;
+                padding: 20px;
+                margin-bottom: 20px;
+                opacity: 0;
+            }
+            100%{
+                opacity: 0;
+                height: 0;
+                line-height: 0px;
+                padding: 0px;
+                margin-bottom: 0px;
+            }
+        }
+
+        .post{
+            position: relative;
             font-size: 20px;
             font-family: Arial, Helvetica, sans-serif;
-            padding: 10px;
-            margin: 10px;
-            background-color: goldenrod;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: yellowgreen;
+            animation-name: remove;
+            animation-duration: 2s;
+            animation-fill-mode: forwards;
+            animation-play-state: paused;
+        }
+        button{
+            position: relative;
+            left: 80%;
         }
     </style>
     <script>
@@ -25,6 +59,16 @@
                 load();
             }
         };
+
+        document.addEventListener('click', event => {
+            const element = event.target;
+            if(element.className === 'hide'){
+                element.parentElement.style.animationPlayState = 'running'; 
+                element.parentElement.addEventListener('animationend', () => {
+                    element.parentElement.remove();
+                })
+            }
+        })
 
 
         function load(){
@@ -41,7 +85,7 @@
 
         function addPost(element){
             const p = document.createElement('p');
-            p.innerHTML = element;
+            p.innerHTML = `<div class="post">${element}<button class="hide">Hide</button></div>`;
             document.querySelector('#posts-container').append(p);
         }
     </script>
